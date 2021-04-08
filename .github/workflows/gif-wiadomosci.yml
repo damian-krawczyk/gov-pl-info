@@ -1,0 +1,35 @@
+name: GIF Wiadomości
+
+on:
+  schedule:
+    - cron: '5 22 * * *'
+
+  workflow_dispatch:
+
+jobs:
+  build_gif_wiadomosci:
+    runs-on: ubuntu-latest
+    name: GIF Wiadomości
+    env:
+      TEST_CHANNEL_URL: "@gpi_healthcheck"
+      CHANNEL_URL: "@gpi_healthcheck"
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: install requirements
+        run: pip install -r requirements.txt
+      - name: python script run
+        run: |
+          python gpi.py
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          GIVEN_DATE: today
+          FEED_NAME: GIF Wiadomości
+          ARTICLE_TYPE: Wiadomość
+          FEED_URL: https://www.gov.pl/web/gif/wiadomosci
+          CHANNEL_URL: ${{ env.CHANNEL_URL }}
+          TEST_CHANNEL_URL: ${{ env.TEST_CHANNEL_URL }}
