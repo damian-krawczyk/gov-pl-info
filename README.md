@@ -8,7 +8,7 @@ an unlimited amount of subscribers. Since the source of information is
 provided in polish language, all notifications are being send in polish 
 language, however in addition they are automatically translated into 
 english language by use of Google Translate service which should make a 
-live of foreigners in Poland a little bit easier.
+life of foreigners in Poland a little bit easier.
 
 ## List of channels
 
