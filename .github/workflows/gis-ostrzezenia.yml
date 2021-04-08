@@ -12,7 +12,7 @@ jobs:
     name: GIS Ostrzeżenia
     env:
       TEST_CHANNEL_URL: "@gpi_healthcheck"
-      CHANNEL_URL: "@gpi_healthcheck"
+      CHANNEL_URL: "@gpi_gis"
     steps:
       - uses: actions/checkout@v2
 
