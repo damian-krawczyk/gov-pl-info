@@ -27,7 +27,7 @@ jobs:
           python gpi.py
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          GIVEN_DATE: 2021-04-01
+          GIVEN_DATE: 2021-04-02
           FEED_NAME: GIS Ostrzeżenia
           ARTICLE_TYPE: Ostrzeżenie
           FEED_URL: https://www.gov.pl/web/gis/ostrzezenia
