@@ -27,7 +27,7 @@ jobs:
           python gpi.py
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          GIVEN_DATE: today
+          GIVEN_DATE: 2021-04-07
           FEED_NAME: Koronawirus Działania rządu
           ARTICLE_TYPE: Działanie rządu
           FEED_URL: https://www.gov.pl/web/koronawirus/dzialania-rzadu
