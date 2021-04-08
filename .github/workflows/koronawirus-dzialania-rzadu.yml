@@ -12,7 +12,7 @@ jobs:
     name: Koronawirus Działania rządu
     env:
       TEST_CHANNEL_URL: "@gpi_healthcheck"
-      CHANNEL_URL: "@gpi_healthcheck"
+      CHANNEL_URL: "@gpi_koronawirus"
     steps:
       - uses: actions/checkout@v2
 
@@ -27,7 +27,7 @@ jobs:
           python gpi.py
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          GIVEN_DATE: 2021-04-07
+          GIVEN_DATE: today
           FEED_NAME: Koronawirus Działania rządu
           ARTICLE_TYPE: Działanie rządu
           FEED_URL: https://www.gov.pl/web/koronawirus/dzialania-rzadu
