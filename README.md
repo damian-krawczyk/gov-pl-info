@@ -12,8 +12,13 @@ life of foreigners in Poland a little bit easier.
 
 ## List of channels
 
-|                 |                              |
-|-----------------|------------------------------|
-| GPI GIS         | https://t.me/gpi_gis         |
-| GPI GIF         | https://t.me/gpi_gif         |
-| GPI Coronavirus | https://t.me/gpi_koronawirus |
+|                  |                               |
+|------------------|-------------------------------|
+| GPI GIS          | https://t.me/gpi_gis          |
+| GPI GIF          | https://t.me/gpi_gif          |
+| GPI Coronavirus  | https://t.me/gpi_koronawirus  |
+| GPI Health Check | https://t.me/gpi_health_check |
+
+## Authors
+
+[Damian Krawczyk](https://damiankrawczyk.com) created [GOV PL Info (GPI)](https://damiankrawczyk.com/en/latest/projects/gov-pl-info).
