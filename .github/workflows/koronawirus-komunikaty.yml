@@ -27,7 +27,7 @@ jobs:
           python gpi.py
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          GIVEN_DATE: 2021-04-22
+          GIVEN_DATE: 2021-04-23
           FEED_NAME: Koronawirus Komunikaty
           ARTICLE_TYPE: Komunikat
           FEED_URL: https://www.gov.pl/web/koronawirus/wiadomosci
