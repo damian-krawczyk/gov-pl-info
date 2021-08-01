@@ -107,7 +107,7 @@ def send_message(article, feed_name, article_type, channel, test_channel, token)
         url = article['url']
         print(f'url: {url}')
 
-        message = f"`{date}` - {article_type}\n**PL:** {rodzaj_decyzji}\n---\n**EN:** {rodzaj_decyzji_en}\n---\n[Szczegóły / Details]({url})"
+        message = f"`{date}` - {article_type}\n**PL:** {rodzaj_decyzji}: {nazwa_produktu_leczniczego} ({podmiot_odpowiedzialny})\n---\n**EN:** {rodzaj_decyzji_en}: {nazwa_produktu_leczniczego} ({podmiot_odpowiedzialny})\n---\n[Szczegóły / Details]({url})"
 
         print(message)
         bot.send_message(channel,text=message, parse_mode='Markdown')
