@@ -1,4 +1,4 @@
-name: GIS Ostrzeżenia
+name: GIS Ostrzeżenia TEST
 
 on:
   schedule:
@@ -9,7 +9,7 @@ on:
 jobs:
   build_gis_ostrzezenia:
     runs-on: ubuntu-latest
-    name: GIS Ostrzeżenia
+    name: GIS Ostrzeżenia TEST
     env:
       TEST_CHANNEL_URL: "@DamianTestChannel"
       CHANNEL_URL: "@DamianTestChannel"
