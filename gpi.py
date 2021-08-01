@@ -93,7 +93,7 @@ def send_message(article, feed_name, article_type, channel, test_channel, token)
         print(message)
         bot.send_message(test_channel,text=message, parse_mode='Markdown')
 
-    elif "GIS Decyzje" in feed_name:
+    elif "GIF Decyzje" in feed_name:
         date = article['date']
         print(f'date: {date}')
         rodzaj_decyzji = article['rodzaj_decyzji']

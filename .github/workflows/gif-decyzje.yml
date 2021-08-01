@@ -1,4 +1,4 @@
-name: GIS Decyzje
+name: GIF Decyzje
 
 on:
   schedule:
@@ -9,10 +9,10 @@ on:
 jobs:
   build_gis_ostrzezenia:
     runs-on: ubuntu-latest
-    name: GIS Decyzje
+    name: GIF Decyzje
     env:
       TEST_CHANNEL_URL: "@gpi_health_check"
-      CHANNEL_URL: "@gpi_gis"
+      CHANNEL_URL: "@gpi_gif"
     steps:
       - uses: actions/checkout@v2
 
@@ -27,8 +27,8 @@ jobs:
           python gpi.py
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          GIVEN_DATE: 2021-07-07
-          FEED_NAME: GIS Decyzje
+          GIVEN_DATE: 2021-06-25
+          FEED_NAME: GIF Decyzje
           ARTICLE_TYPE: Decyzja
           FEED_URL: https://rdg.ezdrowie.gov.pl
           CHANNEL_URL: ${{ env.CHANNEL_URL }}
