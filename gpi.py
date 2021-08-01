@@ -16,31 +16,52 @@ def get_articles(url):
     page = urlopen(url, context=ctx)
     html = page.read().decode("utf-8")
 
-    product = SoupStrainer('article')
-    soup = BeautifulSoup(html, "html.parser", parse_only=product)
+    if "https://www.gov.pl" in url:
+        product = SoupStrainer('article')
+        soup = BeautifulSoup(html, "html.parser", parse_only=product)
 
-    articles = soup.find_all("li")
-    # print(len(articles))
-    article_list = []
+        articles = soup.find_all("li")
+        # print(len(articles))
+        article_list = []
 
-    number_of_articles =0
 
-    for count, article in enumerate(articles):
+        for count, article in enumerate(articles):
 
-        article_date = article.find_all(class_="date")
-        article_date = article_date[0].string.strip()
-        article_date = datetime.datetime.strptime(article_date, "%d.%m.%Y").strftime("%Y-%m-%d")
-        article_list.append({"id": count})
-        article_list[count].update({"date": article_date})
-        article_name = article.find_all(class_="title")
-        article_list[count].update({"title": article_name[0].string})
-        article_intro = article.find_all(class_="intro")
-        if article_intro:
-            article_list[count].update({"intro": article_intro[0].string})
-        else:
-            article_list[count].update({"intro": None})
-        article_urls = article.find_all(href=True)
-        article_list[count].update({"url": "https://www.gov.pl"+article_urls[0]['href']})
+            article_date = article.find_all(class_="date")
+            article_date = article_date[0].string.strip()
+            article_date = datetime.datetime.strptime(article_date, "%d.%m.%Y").strftime("%Y-%m-%d")
+            article_list.append({"id": count})
+            article_list[count].update({"date": article_date})
+            article_name = article.find_all(class_="title")
+            article_list[count].update({"title": article_name[0].string})
+            article_intro = article.find_all(class_="intro")
+            if article_intro:
+                article_list[count].update({"intro": article_intro[0].string})
+            else:
+                article_list[count].update({"intro": None})
+            article_urls = article.find_all(href=True)
+            article_list[count].update({"url": "https://www.gov.pl"+article_urls[0]['href']})
+    elif "https://rdg.ezdrowie.gov" in url:
+        product = SoupStrainer('table')
+        soup = BeautifulSoup(html, "html.parser", parse_only=product)
+        articles = soup.find_all("tr")[1:]
+
+        article_list = []
+
+        for count, article in enumerate(articles):
+            # print(article)
+            article_rows = article.find_all("td")
+            article_list.append({"id": count})
+            article_list[count].update({"numer_decyzji": article_rows[0].string})
+            article_list[count].update({"nazwa_produktu_leczniczego": article_rows[1].string})
+            article_list[count].update({"date": article_rows[2].string})
+            article_list[count].update({"podmiot_odpowiedzialny": article_rows[3].string})
+            article_list[count].update({"rodzaj_decyzji": article_rows[4].string})
+            article_list[count].update({"obszar_obowiazywania": article_rows[5].string})
+            article_urls = article_rows[6].find_all(href=True)
+            article_list[count].update({"url": "https://rdg.ezdrowie.gov.pl"+article_urls[0]['href']})
+    else:
+        article_list = []
 
     return article_list
 
@@ -72,6 +93,26 @@ def send_message(article, feed_name, article_type, channel, test_channel, token)
         print(message)
         bot.send_message(test_channel,text=message, parse_mode='Markdown')
 
+    elif "GIS Decyzje" in feed_name:
+        date = article['date']
+        print(f'date: {date}')
+        rodzaj_decyzji = article['rodzaj_decyzji']
+        print(f'rodzaj_decyzji: {rodzaj_decyzji}')
+        rodzaj_decyzji_en = gs.translate(rodzaj_decyzji, 'en')
+        print(f'rodzaj_decyzji en: {rodzaj_decyzji_en}')
+        nazwa_produktu_leczniczego = article['nazwa_produktu_leczniczego']
+        print(f'nazwa_produktu_leczniczego: {nazwa_produktu_leczniczego}')
+        podmiot_odpowiedzialny = article['podmiot_odpowiedzialny']
+        print(f'podmiot_odpowiedzialny: {podmiot_odpowiedzialny}')
+        url = article['url']
+        print(f'url: {url}')
+
+        message = f"`{date}` - {article_type}\n**PL:** {rodzaj_decyzji}\n---\n**EN:** {rodzaj_decyzji_en}\n---\n[Szczegóły / Details]({url})"
+
+        print(message)
+        bot.send_message(channel,text=message, parse_mode='Markdown')
+
+
     else:
         date = article['date']
         print(f'date: {date}')
@@ -90,7 +131,7 @@ def send_message(article, feed_name, article_type, channel, test_channel, token)
             message = f"`{date}` - {article_type}\n**PL:** {title}\n\n{intro}\n---\n**EN:** {title_en}\n\n{intro_en}\n---\n[Szczegóły / Details]({url})"
         else:
             message = f"`{date}` - {article_type}\n**PL:** {title}\n---\n**EN:** {title_en}\n---\n[Szczegóły / Details]({url})"
-        
+
         print(message)
         bot.send_message(channel,text=message, parse_mode='Markdown')
 
