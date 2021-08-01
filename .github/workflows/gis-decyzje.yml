@@ -27,7 +27,7 @@ jobs:
           python gpi.py
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          GIVEN_DATE: today
+          GIVEN_DATE: 2021-07-26
           FEED_NAME: GIS Decyzje
           ARTICLE_TYPE: Decyzja
           FEED_URL: https://rdg.ezdrowie.gov.pl
