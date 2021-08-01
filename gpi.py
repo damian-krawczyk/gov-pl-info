@@ -41,7 +41,7 @@ def get_articles(url):
                 article_list[count].update({"intro": None})
             article_urls = article.find_all(href=True)
             article_list[count].update({"url": "https://www.gov.pl"+article_urls[0]['href']})
-    elif "https://rdg.ezdrowie.gov" in url:
+    elif "https://rdg.ezdrowie.gov.pl" in url:
         product = SoupStrainer('table')
         soup = BeautifulSoup(html, "html.parser", parse_only=product)
         articles = soup.find_all("tr")[1:]

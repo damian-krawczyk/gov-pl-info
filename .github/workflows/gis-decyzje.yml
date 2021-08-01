@@ -30,6 +30,6 @@ jobs:
           GIVEN_DATE: today
           FEED_NAME: GIS Decyzje
           ARTICLE_TYPE: Decyzja
-          FEED_URL: https://rdg.ezdrowie.gov
+          FEED_URL: https://rdg.ezdrowie.gov.pl
           CHANNEL_URL: ${{ env.CHANNEL_URL }}
           TEST_CHANNEL_URL: ${{ env.TEST_CHANNEL_URL }}
